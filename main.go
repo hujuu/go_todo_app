@@ -23,6 +23,8 @@ func main() {
 }
 
 func run(ctx context.Context) error {
+	ctx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM) 
+	defer stop()
 	cfg, err := config.New()
 	if err != nil {
 		return err
@@ -37,6 +39,8 @@ func run(ctx context.Context) error {
 		// 引数で受け取ったnet.Listenerを利用するので、
 		// Addrフィールドは指定しない
 		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			// コマンドラインで実験するため
+			time.Sleep(5 * time.Second)
 			fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
 		}),
 	}
