@@ -9,6 +9,7 @@ import (
 	"os"
 
 	"golang.org/x/sync/errgroup"
+	"github.com/hujuu/go_todo_app/config"
 )
 
 func main() {
