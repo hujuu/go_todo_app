@@ -7,9 +7,12 @@ import (
 	"net"
 	"net/http"
 	"os"
-
-	"golang.org/x/sync/errgroup"
+	"os/signal"
+	"syscall"
+	"time"
+	
 	"github.com/hujuu/go_todo_app/config"
+	"golang.org/x/sync/errgroup"
 )
 
 func main() {
